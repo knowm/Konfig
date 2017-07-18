@@ -268,7 +268,7 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <header>LICENSE</header>
+                    <header>NOTICE</header>
                     <aggregate>true</aggregate>
                     <includes>
                         <include>**/*.java</include>

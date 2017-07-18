@@ -14,6 +14,23 @@ deserializing, Konfig validates each property's given value if an approprate ann
 
 See [JSpice](https://github.com/knowm/jspice).
 
+## Building
+
+Konfig is built with Maven, which also handles dependency management.
+
+### general
+
+    cd path/to/project
+    mvn clean package
+    mvn javadoc:aggregate
+
+### maven-license-plugin
+
+    mvn license:check
+    mvn license:format
+    mvn license:remove
+
+
 ## TODO
 
 1. Better documentation with examples
