@@ -64,12 +64,12 @@ public class KonfigDoxMojo extends AbstractMojo {
    * Class to include in search
    */
   @Parameter(defaultValue = "org.knowm.konfig.Konfigurable", readonly = true, required = true)
-  private String discoverable;
+  private String konfigurable;
 
   /**
    * A set of packages to look for Konfigurables
    */
-  @Parameter(readonly = true, required = true)
+  @Parameter(property="packages", readonly = true, required = true)
   private String[] packages;
 
   @Override
@@ -83,17 +83,17 @@ public class KonfigDoxMojo extends AbstractMojo {
 
       String converted2Path = sourcesDirectory.getPath() + File.separatorChar + packages[i].replace(".", "/");
 
-      getLog().info("Searching package: " + converted2Path + " for " + discoverable + "s...");
+      getLog().info("Searching package: " + converted2Path + " for " + konfigurable + "s...");
 
-      List<String> konfigurableClasses = QDoxUtil.getDiscoverableClassNames(converted2Path, discoverable);
+      List<String> konfigurableClasses = QDoxUtil.getDiscoverableClassNames(converted2Path, konfigurable);
 
       getLog().debug("konfigurableClasses = " + konfigurableClasses);
 
       konfigurableMetaData.addAll(QDoxUtil.generateModel(converted2Path, konfigurableClasses));
     }
     renderModelInConsole(konfigurableMetaData);
-    renderModelInJSON(konfigurableMetaData, discoverable);
-    renderModelWithFreemarker(konfigurableMetaData, discoverable);
+    renderModelInJSON(konfigurableMetaData, "Konfig");
+    renderModelWithFreemarker(konfigurableMetaData, "Konfig");
     getLog().info("Generating Konfig Dox Finished.");
   }
 
