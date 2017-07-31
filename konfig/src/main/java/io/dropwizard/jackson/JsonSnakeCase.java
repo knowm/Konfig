@@ -1,11 +1,11 @@
 package io.dropwizard.jackson;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotation;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import com.fasterxml.jackson.annotation.JacksonAnnotation;
 
 /**
  * Marker annotation which indicates that the annotated case class should be

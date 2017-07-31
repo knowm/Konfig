@@ -24,38 +24,38 @@ import io.dropwizard.util.SizeUnit;
  * {@link io.dropwizard.util.Size} instances.
  */
 @Documented
-@Constraint(validatedBy = { })
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+@Constraint(validatedBy = {})
+@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @MinSize(0)
 @MaxSize(value = Long.MAX_VALUE, unit = SizeUnit.TERABYTES)
 @ReportAsSingleViolation
 public @interface SizeRange {
-    @OverridesAttribute(constraint = MinSize.class, name = "value")
-    long min() default 0;
+  @OverridesAttribute(constraint = MinSize.class, name = "value")
+  long min() default 0;
 
-    @OverridesAttribute(constraint = MaxSize.class, name = "value")
-    long max() default Long.MAX_VALUE;
+  @OverridesAttribute(constraint = MaxSize.class, name = "value")
+  long max() default Long.MAX_VALUE;
 
-    @OverridesAttribute.List({
-        @OverridesAttribute(constraint = MinSize.class, name = "unit"),
-        @OverridesAttribute(constraint = MaxSize.class, name = "unit")
-    })
-    SizeUnit unit() default SizeUnit.BYTES;
+  @OverridesAttribute.List({
+                               @OverridesAttribute(constraint = MinSize.class, name = "unit"),
+                               @OverridesAttribute(constraint = MaxSize.class, name = "unit")
+                           })
+  SizeUnit unit() default SizeUnit.BYTES;
 
-    String message() default "must be between {min} {unit} and {max} {unit}";
+  String message() default "must be between {min} {unit} and {max} {unit}";
 
-    Class<?>[] groups() default { };
+  Class<?>[] groups() default {};
 
-    @SuppressWarnings("UnusedDeclaration") Class<? extends Payload>[] payload() default { };
+  @SuppressWarnings("UnusedDeclaration") Class<? extends Payload>[] payload() default {};
 
-    /**
-     * Defines several {@code @SizeRange} annotations on the same element.
-     */
-    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
-    @Retention(RUNTIME)
-    @Documented
-    public @interface List {
-        SizeRange[] value();
-    }
+  /**
+   * Defines several {@code @SizeRange} annotations on the same element.
+   */
+  @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
+  @Retention(RUNTIME)
+  @Documented
+  public @interface List {
+    SizeRange[] value();
+  }
 }

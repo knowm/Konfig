@@ -69,7 +69,7 @@ public class KonfigDoxMojo extends AbstractMojo {
   /**
    * A set of packages to look for Konfigurables
    */
-  @Parameter(property="packages", readonly = true, required = true)
+  @Parameter(property = "packages", readonly = true, required = true)
   private String[] packages;
 
   @Override

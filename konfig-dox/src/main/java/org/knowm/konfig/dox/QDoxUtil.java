@@ -33,7 +33,6 @@ import com.thoughtworks.qdox.model.JavaSource;
 
 public class QDoxUtil {
 
-
   /**
    * Get the konfigurable class names in a given package
    *
@@ -81,8 +80,6 @@ public class QDoxUtil {
             break;
           }
         }
-
-
 
 //        if (cls.getSuperJavaClass().isA(discoverable)) {
 //          isKonfigurable = true;
@@ -134,7 +131,6 @@ public class QDoxUtil {
       // 2. set the class description
       String description = originalClass.getComment() == null ? "TODO - missing class JavaDoc!" : originalClass.getComment();
       konfigurableMetaData.setDescription(description);
-
 
       JavaClass cls = src.getClasses().get(0);
 

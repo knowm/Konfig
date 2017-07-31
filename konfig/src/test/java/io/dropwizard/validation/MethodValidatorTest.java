@@ -11,37 +11,37 @@ import org.junit.Test;
 
 @SuppressWarnings({"FieldMayBeFinal", "MethodMayBeStatic", "UnusedDeclaration"})
 public class MethodValidatorTest {
-    public static class SubExample {
-        @ValidationMethod(message = "also needs something special")
-        public boolean isOK() {
-            return false;
-        }
+  public static class SubExample {
+    @ValidationMethod(message = "also needs something special")
+    public boolean isOK() {
+      return false;
+    }
+  }
+
+  public static class Example {
+    @Valid
+    private SubExample subExample = new SubExample();
+
+    @ValidationMethod(message = "must have a false thing")
+    public boolean isFalse() {
+      return false;
     }
 
-    public static class Example {
-        @Valid
-        private SubExample subExample = new SubExample();
-
-        @ValidationMethod(message = "must have a false thing")
-        public boolean isFalse() {
-            return false;
-        }
-
-        @ValidationMethod(message = "must have a true thing")
-        public boolean isTrue() {
-            return true;
-        }
+    @ValidationMethod(message = "must have a true thing")
+    public boolean isTrue() {
+      return true;
     }
+  }
 
-    private final Validator validator = BaseValidator.newValidator();
+  private final Validator validator = BaseValidator.newValidator();
 
-    @Test
-    public void complainsAboutMethodsWhichReturnFalse() throws Exception {
-        final List<String> errors =
-                ConstraintViolations.format(validator.validate(new Example()));
+  @Test
+  public void complainsAboutMethodsWhichReturnFalse() throws Exception {
+    final List<String> errors =
+        ConstraintViolations.format(validator.validate(new Example()));
 
-        assertThat(errors)
-                .containsOnly("must have a false thing",
-                              "also needs something special");
-    }
+    assertThat(errors)
+        .containsOnly("must have a false thing",
+            "also needs something special");
+  }
 }

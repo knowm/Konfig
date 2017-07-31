@@ -13,18 +13,18 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
  */
 public class YamlConfigurationFactory<T> extends BaseConfigurationFactory<T> {
 
-    /**
-     * Creates a new configuration factory for the given class.
-     *
-     * @param klass          the configuration class
-     * @param validator      the validator to use
-     * @param objectMapper   the Jackson {@link ObjectMapper} to use
-     * @param propertyPrefix the system property name prefix used by overrides
-     */
-    public YamlConfigurationFactory(Class<T> klass,
-                                    Validator validator,
-                                    ObjectMapper objectMapper,
-                                    String propertyPrefix) {
-        super(new YAMLFactory(), YAMLFactory.FORMAT_NAME_YAML, klass, validator, objectMapper, propertyPrefix);
-    }
+  /**
+   * Creates a new configuration factory for the given class.
+   *
+   * @param klass the configuration class
+   * @param validator the validator to use
+   * @param objectMapper the Jackson {@link ObjectMapper} to use
+   * @param propertyPrefix the system property name prefix used by overrides
+   */
+  public YamlConfigurationFactory(Class<T> klass,
+      Validator validator,
+      ObjectMapper objectMapper,
+      String propertyPrefix) {
+    super(new YAMLFactory(), YAMLFactory.FORMAT_NAME_YAML, klass, validator, objectMapper, propertyPrefix);
+  }
 }

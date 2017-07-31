@@ -13,18 +13,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class JsonConfigurationFactory<T> extends BaseConfigurationFactory<T> {
 
-    /**
-     * Creates a new configuration factory for the given class.
-     *
-     * @param klass          the configuration class
-     * @param validator      the validator to use
-     * @param objectMapper   the Jackson {@link ObjectMapper} to use
-     * @param propertyPrefix the system property name prefix used by overrides
-     */
-    public JsonConfigurationFactory(Class<T> klass,
-                                    Validator validator,
-                                    ObjectMapper objectMapper,
-                                    String propertyPrefix) {
-        super(objectMapper.getFactory(), JsonFactory.FORMAT_NAME_JSON, klass, validator, objectMapper, propertyPrefix);
-    }
+  /**
+   * Creates a new configuration factory for the given class.
+   *
+   * @param klass the configuration class
+   * @param validator the validator to use
+   * @param objectMapper the Jackson {@link ObjectMapper} to use
+   * @param propertyPrefix the system property name prefix used by overrides
+   */
+  public JsonConfigurationFactory(Class<T> klass,
+      Validator validator,
+      ObjectMapper objectMapper,
+      String propertyPrefix) {
+    super(objectMapper.getFactory(), JsonFactory.FORMAT_NAME_JSON, klass, validator, objectMapper, propertyPrefix);
+  }
 }

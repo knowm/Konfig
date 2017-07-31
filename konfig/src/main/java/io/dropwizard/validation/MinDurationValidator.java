@@ -13,17 +13,17 @@ import io.dropwizard.util.Duration;
  */
 public class MinDurationValidator implements ConstraintValidator<MinDuration, Duration> {
 
-    private long minQty;
-    private TimeUnit minUnit;
+  private long minQty;
+  private TimeUnit minUnit;
 
-    @Override
-    public void initialize(MinDuration constraintAnnotation) {
-        this.minQty = constraintAnnotation.value();
-        this.minUnit = constraintAnnotation.unit();
-    }
+  @Override
+  public void initialize(MinDuration constraintAnnotation) {
+    this.minQty = constraintAnnotation.value();
+    this.minUnit = constraintAnnotation.unit();
+  }
 
-    @Override
-    public boolean isValid(Duration value, ConstraintValidatorContext context) {
-        return (value == null) || (value.toNanoseconds() >= minUnit.toNanos(minQty));
-    }
+  @Override
+  public boolean isValid(Duration value, ConstraintValidatorContext context) {
+    return (value == null) || (value.toNanoseconds() >= minUnit.toNanos(minQty));
+  }
 }

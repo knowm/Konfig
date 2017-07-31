@@ -12,17 +12,17 @@ import io.dropwizard.util.SizeUnit;
  */
 public class MaxSizeValidator implements ConstraintValidator<MaxSize, Size> {
 
-    private long maxQty;
-    private SizeUnit maxUnit;
+  private long maxQty;
+  private SizeUnit maxUnit;
 
-    @Override
-    public void initialize(MaxSize constraintAnnotation) {
-        this.maxQty = constraintAnnotation.value();
-        this.maxUnit = constraintAnnotation.unit();
-    }
+  @Override
+  public void initialize(MaxSize constraintAnnotation) {
+    this.maxQty = constraintAnnotation.value();
+    this.maxUnit = constraintAnnotation.unit();
+  }
 
-    @Override
-    public boolean isValid(Size value, ConstraintValidatorContext context) {
-        return (value == null) || (value.toBytes() <= maxUnit.toBytes(maxQty));
-    }
+  @Override
+  public boolean isValid(Size value, ConstraintValidatorContext context) {
+    return (value == null) || (value.toBytes() <= maxUnit.toBytes(maxQty));
+  }
 }

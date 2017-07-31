@@ -11,13 +11,13 @@ import java.io.InputStream;
  * local file system.
  */
 public class FileConfigurationSourceProvider implements ConfigurationSourceProvider {
-    @Override
-    public InputStream open(String path) throws IOException {
-        final File file = new File(path);
-        if (!file.exists()) {
-            throw new FileNotFoundException("File " + file + " not found");
-        }
-
-        return new FileInputStream(file);
+  @Override
+  public InputStream open(String path) throws IOException {
+    final File file = new File(path);
+    if (!file.exists()) {
+      throw new FileNotFoundException("File " + file + " not found");
     }
+
+    return new FileInputStream(file);
+  }
 }

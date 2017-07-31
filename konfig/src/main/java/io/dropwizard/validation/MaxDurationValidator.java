@@ -13,17 +13,17 @@ import io.dropwizard.util.Duration;
  */
 public class MaxDurationValidator implements ConstraintValidator<MaxDuration, Duration> {
 
-    private long maxQty;
-    private TimeUnit maxUnit;
+  private long maxQty;
+  private TimeUnit maxUnit;
 
-    @Override
-    public void initialize(MaxDuration constraintAnnotation) {
-        this.maxQty = constraintAnnotation.value();
-        this.maxUnit = constraintAnnotation.unit();
-    }
+  @Override
+  public void initialize(MaxDuration constraintAnnotation) {
+    this.maxQty = constraintAnnotation.value();
+    this.maxUnit = constraintAnnotation.unit();
+  }
 
-    @Override
-    public boolean isValid(Duration value, ConstraintValidatorContext context) {
-        return (value == null) || (value.toNanoseconds() <= maxUnit.toNanos(maxQty));
-    }
+  @Override
+  public boolean isValid(Duration value, ConstraintValidatorContext context) {
+    return (value == null) || (value.toNanoseconds() <= maxUnit.toNanos(maxQty));
+  }
 }

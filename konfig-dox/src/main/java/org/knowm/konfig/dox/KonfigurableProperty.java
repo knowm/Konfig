@@ -20,8 +20,6 @@
  */
 package org.knowm.konfig.dox;
 
-
-
 public class KonfigurableProperty {
 
   String propertyName = "";

@@ -8,17 +8,17 @@ import javax.validation.ConstraintValidatorContext;
  * range, inclusive.
  */
 public class PortRangeValidator implements ConstraintValidator<PortRange, Integer> {
-    private int min;
-    private int max;
+  private int min;
+  private int max;
 
-    @Override
-    public void initialize(PortRange constraintAnnotation) {
-        this.min = constraintAnnotation.min();
-        this.max = constraintAnnotation.max();
-    }
+  @Override
+  public void initialize(PortRange constraintAnnotation) {
+    this.min = constraintAnnotation.min();
+    this.max = constraintAnnotation.max();
+  }
 
-    @Override
-    public boolean isValid(Integer value, ConstraintValidatorContext context) {
-        return value == 0 || (value >= min && value <= max);
-    }
+  @Override
+  public boolean isValid(Integer value, ConstraintValidatorContext context) {
+    return value == 0 || (value >= min && value <= max);
+  }
 }

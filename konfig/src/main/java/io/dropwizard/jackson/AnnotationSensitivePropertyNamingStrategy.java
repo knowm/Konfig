@@ -14,51 +14,51 @@ import com.fasterxml.jackson.databind.introspect.AnnotatedParameter;
  */
 public class AnnotationSensitivePropertyNamingStrategy extends PropertyNamingStrategy {
 
-    private final SnakeCaseStrategy snakeCase;
+  private final SnakeCaseStrategy snakeCase;
 
-    public AnnotationSensitivePropertyNamingStrategy() {
-        super();
-        this.snakeCase = new SnakeCaseStrategy();
+  public AnnotationSensitivePropertyNamingStrategy() {
+    super();
+    this.snakeCase = new SnakeCaseStrategy();
+  }
+
+  @Override
+  public String nameForConstructorParameter(MapperConfig<?> config,
+      AnnotatedParameter ctorParam,
+      String defaultName) {
+    if (ctorParam.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
+      return snakeCase.nameForConstructorParameter(config, ctorParam, defaultName);
+    }
+    return super.nameForConstructorParameter(config, ctorParam, defaultName);
+  }
+
+  @Override
+  public String nameForField(MapperConfig<?> config,
+      AnnotatedField field,
+      String defaultName) {
+    if (field.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
+      return snakeCase.nameForField(config, field, defaultName);
     }
 
-    @Override
-    public String nameForConstructorParameter(MapperConfig<?> config,
-                                              AnnotatedParameter ctorParam,
-                                              String defaultName) {
-        if (ctorParam.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
-            return snakeCase.nameForConstructorParameter(config, ctorParam, defaultName);
-        }
-        return super.nameForConstructorParameter(config, ctorParam, defaultName);
-    }
+    return super.nameForField(config, field, defaultName);
+  }
 
-    @Override
-    public String nameForField(MapperConfig<?> config,
-                               AnnotatedField field,
-                               String defaultName) {
-        if (field.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
-            return snakeCase.nameForField(config, field, defaultName);
-        }
-
-        return super.nameForField(config, field, defaultName);
+  @Override
+  public String nameForGetterMethod(MapperConfig<?> config,
+      AnnotatedMethod method,
+      String defaultName) {
+    if (method.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
+      return snakeCase.nameForGetterMethod(config, method, defaultName);
     }
+    return super.nameForGetterMethod(config, method, defaultName);
+  }
 
-    @Override
-    public String nameForGetterMethod(MapperConfig<?> config,
-                                      AnnotatedMethod method,
-                                      String defaultName) {
-        if (method.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
-            return snakeCase.nameForGetterMethod(config, method, defaultName);
-        }
-        return super.nameForGetterMethod(config, method, defaultName);
+  @Override
+  public String nameForSetterMethod(MapperConfig<?> config,
+      AnnotatedMethod method,
+      String defaultName) {
+    if (method.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
+      return snakeCase.nameForSetterMethod(config, method, defaultName);
     }
-
-    @Override
-    public String nameForSetterMethod(MapperConfig<?> config,
-                                      AnnotatedMethod method,
-                                      String defaultName) {
-        if (method.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
-            return snakeCase.nameForSetterMethod(config, method, defaultName);
-        }
-        return super.nameForSetterMethod(config, method, defaultName);
-    }
+    return super.nameForSetterMethod(config, method, defaultName);
+  }
 }

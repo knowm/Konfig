@@ -40,7 +40,6 @@ public class ConfigurationFactoryFactoryTest {
   @Test
   public void createDefaultFactoryFailsUnknownProperty() throws Exception {
 
-
     File validFileWithUnknownProp = new File(getClass().getClassLoader().getResource("factory-test-unknown-property.yml").getFile());
 
     ConfigurationFactory<Example> factory =

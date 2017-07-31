@@ -1,15 +1,16 @@
 package io.dropwizard.validation;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
 
 /**
  * Validates a bean predicate method as returning true. Bean predicates must be of the form
@@ -20,9 +21,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = MethodValidator.class)
 @Documented
 public @interface ValidationMethod {
-    String message() default "is not valid";
+  String message() default "is not valid";
 
-    Class<?>[] groups() default {};
+  Class<?>[] groups() default {};
 
-    @SuppressWarnings("UnusedDeclaration") Class<? extends Payload>[] payload() default { };
+  @SuppressWarnings("UnusedDeclaration") Class<? extends Payload>[] payload() default {};
 }

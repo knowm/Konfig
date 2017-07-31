@@ -14,64 +14,64 @@ import javax.validation.Validator;
 import org.junit.Test;
 
 public class OneOfValidatorTest {
-    @SuppressWarnings("UnusedDeclaration")
-    public static class Example {
-        @OneOf({"one", "two", "three"})
-        private String basic = "one";
+  @SuppressWarnings("UnusedDeclaration")
+  public static class Example {
+    @OneOf({"one", "two", "three"})
+    private String basic = "one";
 
-        @OneOf(value = {"one", "two", "three"}, ignoreCase = true)
-        private String caseInsensitive = "one";
+    @OneOf(value = {"one", "two", "three"}, ignoreCase = true)
+    private String caseInsensitive = "one";
 
-        @OneOf(value = {"one", "two", "three"}, ignoreWhitespace = true)
-        private String whitespaceInsensitive = "one";
+    @OneOf(value = {"one", "two", "three"}, ignoreWhitespace = true)
+    private String whitespaceInsensitive = "one";
 
-        @Valid
-        private List<@OneOf({"one", "two", "three"}) String> basicList = Arrays.asList("one");
-    }
+    @Valid
+    private List<@OneOf({"one", "two", "three"}) String> basicList = Arrays.asList("one");
+  }
 
-    private final Validator validator = BaseValidator.newValidator();
+  private final Validator validator = BaseValidator.newValidator();
 
-    @Test
-    public void allowsExactElements() throws Exception {
-        assertThat(format(validator.validate(new Example())))
-                .isEmpty();
-    }
+  @Test
+  public void allowsExactElements() throws Exception {
+    assertThat(format(validator.validate(new Example())))
+        .isEmpty();
+  }
 
-    @Test
-    public void doesNotAllowOtherElements() throws Exception {
-        assumeTrue("en".equals(Locale.getDefault().getLanguage()));
+  @Test
+  public void doesNotAllowOtherElements() throws Exception {
+    assumeTrue("en".equals(Locale.getDefault().getLanguage()));
 
-        final Example example = new Example();
-        example.basic = "four";
+    final Example example = new Example();
+    example.basic = "four";
 
-        assertThat(format(validator.validate(example)))
-                .containsOnly("basic must be one of [one, two, three]");
-    }
+    assertThat(format(validator.validate(example)))
+        .containsOnly("basic must be one of [one, two, three]");
+  }
 
-    @Test
-    public void doesNotAllowBadElementsInList() {
-        final Example example = new Example();
-        example.basicList = Arrays.asList("four");
+  @Test
+  public void doesNotAllowBadElementsInList() {
+    final Example example = new Example();
+    example.basicList = Arrays.asList("four");
 
-        assertThat(format(validator.validate(example)))
-            .containsOnly("basicList[0].<collection element> must be one of [one, two, three]");
-    }
+    assertThat(format(validator.validate(example)))
+        .containsOnly("basicList[0].<collection element> must be one of [one, two, three]");
+  }
 
-    @Test
-    public void optionallyIgnoresCase() throws Exception {
-        final Example example = new Example();
-        example.caseInsensitive = "ONE";
+  @Test
+  public void optionallyIgnoresCase() throws Exception {
+    final Example example = new Example();
+    example.caseInsensitive = "ONE";
 
-        assertThat(format(validator.validate(example)))
-                .isEmpty();
-    }
+    assertThat(format(validator.validate(example)))
+        .isEmpty();
+  }
 
-    @Test
-    public void optionallyIgnoresWhitespace() throws Exception {
-        final Example example = new Example();
-        example.whitespaceInsensitive = "   one  ";
+  @Test
+  public void optionallyIgnoresWhitespace() throws Exception {
+    final Example example = new Example();
+    example.whitespaceInsensitive = "   one  ";
 
-        assertThat(format(validator.validate(example)))
-                .isEmpty();
-    }
+    assertThat(format(validator.validate(example)))
+        .isEmpty();
+  }
 }

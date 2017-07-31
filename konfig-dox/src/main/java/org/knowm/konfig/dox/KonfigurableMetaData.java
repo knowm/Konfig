@@ -20,7 +20,6 @@
  */
 package org.knowm.konfig.dox;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +48,6 @@ public class KonfigurableMetaData {
 
     this.description = description;
   }
-
 
   public List<KonfigurableProperty> getProperties() {
 

@@ -18,13 +18,13 @@ import java.io.InputStream;
  * [1] https://docs.oracle.com/javase/8/docs/technotes/guides/lang/resources.html
  */
 public class ResourceConfigurationSourceProvider implements ConfigurationSourceProvider {
-    @Override
-    public InputStream open(String path) throws IOException {
-        InputStream result = getResourceAsStream(path);
-        return result == null && path.startsWith("/") ? getResourceAsStream(path.substring(1)) : result;
-    }
+  @Override
+  public InputStream open(String path) throws IOException {
+    InputStream result = getResourceAsStream(path);
+    return result == null && path.startsWith("/") ? getResourceAsStream(path.substring(1)) : result;
+  }
 
-    private InputStream getResourceAsStream(String path) {
-        return getClass().getClassLoader().getResourceAsStream(path);
-    }
+  private InputStream getResourceAsStream(String path) {
+    return getClass().getClassLoader().getResourceAsStream(path);
+  }
 }
