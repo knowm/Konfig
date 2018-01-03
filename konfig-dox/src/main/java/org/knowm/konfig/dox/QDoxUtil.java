@@ -106,7 +106,7 @@ public class QDoxUtil {
     JavaProjectBuilder builder = new JavaProjectBuilder();
     builder.addSourceTree(new File(packageName));
 
-    List<KonfigurableMetaData> konfigurableMetaDataList = new ArrayList<KonfigurableMetaData>();
+    List<KonfigurableMetaData> konfigurableMetaDataList = new ArrayList<>();
 
     Collection<JavaSource> sources = builder.getSources();
     // System.out.println(sources.size());
@@ -114,7 +114,7 @@ public class QDoxUtil {
     // for each source file
     for (JavaSource src : builder.getSources()) {
 
-      List<KonfigurableProperty> discoverableProperties = new ArrayList<KonfigurableProperty>();
+      List<KonfigurableProperty> discoverableProperties = new ArrayList<>();
 
       // get the first class defined in the source file (assuming only one per file)
       JavaClass originalClass = src.getClasses().get(0);
