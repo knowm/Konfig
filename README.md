@@ -12,9 +12,132 @@ Konfig-dox is a Maven  plugin that auto-generates documentation for your configu
 JavaDocs. Given an array of package names to search, it will find all classes implementing `Konfigurable` and generate the documentation in JSON
 and HTML form.
 
-## Example
 
-See [JSpice](https://github.com/knowm/jspice).
+## Example.java
+
+```java
+  private void goJSON() throws IOException, ConfigurationException {
+
+    ConfigurableObject configurableObject =
+        new Konfig<ConfigurableObject>()
+            .buildConfigurationfromJSONFileAsResource(ConfigurableObject.class, "example.json");
+
+    System.out.println(configurableObject.toString());
+  }
+```
+
+## example.json
+
+```json
+{
+    "name": "Coda Hale",
+    "type": [
+        "coder",
+        "wizard"
+    ],
+    "properties": {
+        "debug": true,
+        "settings.enabled": false
+    },
+    "servers": [
+        {
+            "port": 8080
+        },
+        {
+            "port": 8081
+        },
+        {
+            "port": 8082
+        }
+    ],
+    "my.logger": {
+        "level": "info"
+    }
+}
+```
+
+## ConfigurableObject.java 
+
+```
+public class ConfigurableObject implements Konfigurable {
+
+  @NotNull
+  @Pattern(regexp = "[\\w]+[\\s]+[\\w]+([\\s][\\w]+)?")
+  private String name;
+
+  @JsonProperty private int age = 1;
+
+  List<String> type;
+
+  @JsonProperty private Map<String, String> properties = new LinkedHashMap<>();
+
+  @JsonProperty private List<ExampleServer> servers = new ArrayList<>();
+
+  private boolean admin;
+
+  @JsonProperty("my.logger")
+  private Map<String, String> logger = new LinkedHashMap<>();
+
+  public String getName() {
+    return name;
+  }
+
+  public List<String> getType() {
+    return type;
+  }
+
+  public Map<String, String> getProperties() {
+    return properties;
+  }
+
+  public List<ExampleServer> getServers() {
+    return servers;
+  }
+
+  public boolean isAdmin() {
+    return admin;
+  }
+
+  public void setAdmin(boolean admin) {
+    this.admin = admin;
+  }
+
+  public Map<String, String> getLogger() {
+    return logger;
+  }
+
+  @Override
+  public String toString() {
+    return "ConfigurableObject [name="
+        + name
+        + ", age="
+        + age
+        + ", type="
+        + type
+        + ", properties="
+        + properties
+        + ", servers="
+        + servers
+        + ", admin="
+        + admin
+        + ", logger="
+        + logger
+        + "]";
+  }
+}
+```
+
+## Output
+
+```
+ConfigurableObject [name=Coda Hale, age=1, type=[coder, wizard], properties={debug=true, settings.enabled=false}, servers=[ExampleServer [port=8080], ExampleServer [port=8081], ExampleServer [port=8082]], admin=false, logger={level=info}]
+```
+
+## Extra Options
+
+1. You can override value with a Java Vm arg like this: `-Dk.name="Tim Molter"`.
+1. Annotations can be use to constrain fields: min, max, etc.
+1. You can load config files as Strings, from resources and as a File.
 
 ## Building
 
@@ -32,8 +155,3 @@ Konfig is built with Maven, which also handles dependency management.
     mvn license:format
     mvn license:remove
 
-
-## TODO
-
-1. Better documentation with examples
-1. Test JSON deserialization
