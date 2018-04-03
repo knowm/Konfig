@@ -3,6 +3,9 @@ package io.dropwizard.configuration;
 import java.io.File;
 import java.io.IOException;
 
+import io.dropwizard.configuration.provider.ConfigurationSourceProvider;
+import io.dropwizard.configuration.provider.FileConfigurationSourceProvider;
+
 public interface ConfigurationFactory<T> {
 
   /**

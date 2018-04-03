@@ -1,4 +1,4 @@
-package io.dropwizard.configuration;
+package io.dropwizard.configuration.provider;
 
 import java.io.File;
 import java.io.FileInputStream;

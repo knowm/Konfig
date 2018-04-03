@@ -14,6 +14,8 @@ import org.apache.commons.lang3.text.StrLookup;
 import org.apache.commons.lang3.text.StrSubstitutor;
 import org.junit.Test;
 
+import io.dropwizard.configuration.provider.ConfigurationSourceProvider;
+
 public class SubstitutingSourceProviderTest {
   @Test
   public void shouldSubstituteCorrectly() throws IOException {

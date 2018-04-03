@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
+import io.dropwizard.configuration.provider.ConfigurationSourceProvider;
+import io.dropwizard.configuration.provider.ResourceConfigurationSourceProvider;
+
 public class ResourceConfigurationSourceProviderTest {
   private final ConfigurationSourceProvider provider = new ResourceConfigurationSourceProvider();
 

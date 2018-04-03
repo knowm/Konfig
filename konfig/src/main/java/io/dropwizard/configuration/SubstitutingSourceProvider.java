@@ -9,6 +9,8 @@ import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.lang3.text.StrSubstitutor;
 
+import io.dropwizard.configuration.provider.ConfigurationSourceProvider;
+
 /**
  * A delegating {@link ConfigurationSourceProvider} which replaces variables in the underlying configuration
  * source according to the rules of a custom {@link org.apache.commons.lang3.text.StrSubstitutor}.
@@ -21,7 +23,7 @@ public class SubstitutingSourceProvider implements ConfigurationSourceProvider {
   /**
    * Create a new instance.
    *
-   * @param delegate The underlying {@link io.dropwizard.configuration.ConfigurationSourceProvider}.
+   * @param delegate The underlying {@link io.dropwizard.configuration.provider.ConfigurationSourceProvider}.
    * @param substitutor The custom {@link org.apache.commons.lang3.text.StrSubstitutor} implementation.
    */
   public SubstitutingSourceProvider(ConfigurationSourceProvider delegate, StrSubstitutor substitutor) {

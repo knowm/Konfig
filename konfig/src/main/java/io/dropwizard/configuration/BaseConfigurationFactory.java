@@ -30,6 +30,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 
+import io.dropwizard.configuration.provider.ConfigurationSourceProvider;
+
 /**
  * A generic factory class for loading configuration files, binding them to configuration objects, and
  * validating their constraints. Allows for overriding configuration parameters from system properties.
