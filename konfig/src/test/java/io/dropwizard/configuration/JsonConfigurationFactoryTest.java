@@ -1,6 +1,6 @@
 package io.dropwizard.configuration;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +18,8 @@ public class JsonConfigurationFactoryTest extends BaseConfigurationFactoryTest {
 
   @Override
   public void setUp() throws Exception {
-    this.factory = new JsonConfigurationFactory<>(Example.class, validator, Jackson.newObjectMapper(), "dw");
+    this.factory =
+        new JsonConfigurationFactory<>(Example.class, validator, Jackson.newObjectMapper(), "dw");
     this.malformedFile = resourceFileName("factory-test-malformed.json");
     this.emptyFile = resourceFileName("factory-test-empty.json");
     this.invalidFile = resourceFileName("factory-test-invalid.json");
@@ -30,49 +31,38 @@ public class JsonConfigurationFactoryTest extends BaseConfigurationFactoryTest {
   }
 
   @Override
-  public void throwsAnExceptionOnMalformedFiles() throws Exception {
-    try {
-      super.throwsAnExceptionOnMalformedFiles();
-    } catch (ConfigurationParsingException e) {
-      assertThat(e)
-          .hasMessageContaining("* Malformed JSON at line:");
-    }
+  public void throwsAnExceptionOnMalformedFiles() {
+    assertThatThrownBy(super::throwsAnExceptionOnMalformedFiles)
+        .hasMessageContaining("* Malformed JSON at line:");
   }
 
   @Override
-  public void printsDetailedInformationOnMalformedContent() throws Exception {
-    try {
-      super.printsDetailedInformationOnMalformedContent();
-    } catch (ConfigurationParsingException e) {
-      assertThat(e)
-          .hasMessageContaining(String.format(
-              "%s has an error:%n" +
-                  "  * Malformed JSON at line: 7, column: 3; Unexpected close marker '}': expected ']'",
-              malformedAdvancedFile.getName()));
-    }
+  public void printsDetailedInformationOnMalformedContent() {
+    assertThatThrownBy(super::printsDetailedInformationOnMalformedContent)
+        .isInstanceOf(ConfigurationParsingException.class)
+        .hasMessageContaining(
+            String.format(
+                "%s has an error:%n"
+                    + "  * Malformed JSON at line: 7, column: 3; Unexpected close marker '}': expected ']'",
+                malformedAdvancedFile.getName()));
   }
 
-  @Test(expected = ConfigurationParsingException.class)
-  public void defaultJsonFactoryFailsOnComment() throws IOException, ConfigurationException {
-    try {
-      factory.build(commentFile);
-    } catch (ConfigurationParsingException e) {
-      assertThat(e)
-          .hasMessageContaining(String.format(
-              "%s has an error:%n" +
-                  "  * Malformed JSON at line: 4, column: 4; Unexpected character ('/' (code 47)): maybe a (non-standard) comment? (not recognized as one since Feature 'ALLOW_COMMENTS' not enabled for parser)",
-              commentFile.getName()));
-      throw e;
-    }
+  @Test
+  public void defaultJsonFactoryFailsOnComment() {
+    assertThatThrownBy(() -> factory.build(commentFile))
+        .hasMessageContaining(
+            String.format(
+                "%s has an error:%n"
+                    + "  * Malformed JSON at line: 4, column: 4; Unexpected character ('/' (code 47)): maybe a (non-standard) comment? (not recognized as one since Feature 'ALLOW_COMMENTS' not enabled for parser)",
+                commentFile.getName()));
   }
 
   @Test
   public void configuredMapperAllowsComment() throws IOException, ConfigurationException {
-    ObjectMapper mapper = Jackson
-        .newObjectMapper()
-        .configure(Feature.ALLOW_COMMENTS, true);
+    ObjectMapper mapper = Jackson.newObjectMapper().configure(Feature.ALLOW_COMMENTS, true);
 
-    JsonConfigurationFactory<Example> factory = new JsonConfigurationFactory<>(Example.class, validator, mapper, "dw");
+    JsonConfigurationFactory<Example> factory =
+        new JsonConfigurationFactory<>(Example.class, validator, mapper, "dw");
     factory.build(commentFile);
   }
 }

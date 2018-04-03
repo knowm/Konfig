@@ -1,14 +1,14 @@
 {
-  "name": "Migty Wizard",
-  "type": [
-    "wizard"
-  ],
-  "propertis": {
-    "admin": true
-  },
-  "servers": [
-    {
-      "port": 8080
-    }
-  ]
+	"name": "Migty Wizard",
+	"type": [
+		"wizard"
+	],
+	"propertis": {
+		"admin": true
+	},
+	"servers": [
+		{
+			"port": 8080
+		}
+	]
 }
