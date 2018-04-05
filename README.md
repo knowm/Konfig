@@ -58,7 +58,7 @@ and HTML form.
 
 ## ConfigurableObject.java 
 
-```
+```java
 public class ConfigurableObject implements Konfigurable {
 
   @NotNull
