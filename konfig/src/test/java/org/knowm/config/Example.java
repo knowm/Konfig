@@ -2,9 +2,8 @@ package org.knowm.config;
 
 import java.io.IOException;
 
+import org.knowm.configuration.ConfigurationException;
 import org.knowm.konfig.Konfig;
-
-import io.dropwizard.configuration.ConfigurationException;
 
 public class Example {
 

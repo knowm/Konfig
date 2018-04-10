@@ -4,16 +4,16 @@ import java.io.IOException;
 
 import javax.validation.Validator;
 
-import io.dropwizard.configuration.ConfigurationException;
-import io.dropwizard.configuration.ConfigurationFactory;
-import io.dropwizard.configuration.JsonConfigurationFactory;
-import io.dropwizard.configuration.YamlConfigurationFactory;
-import io.dropwizard.configuration.provider.ConfigurationSourceProvider;
-import io.dropwizard.configuration.provider.FileConfigurationSourceProvider;
-import io.dropwizard.configuration.provider.ResourceConfigurationSourceProvider;
-import io.dropwizard.configuration.provider.UTF8StringConfigurationSourceProvider;
-import io.dropwizard.jackson.Jackson;
-import io.dropwizard.validation.BaseValidator;
+import org.knowm.configuration.ConfigurationException;
+import org.knowm.configuration.ConfigurationFactory;
+import org.knowm.configuration.JsonConfigurationFactory;
+import org.knowm.configuration.YamlConfigurationFactory;
+import org.knowm.configuration.provider.ConfigurationSourceProvider;
+import org.knowm.configuration.provider.FileConfigurationSourceProvider;
+import org.knowm.configuration.provider.ResourceConfigurationSourceProvider;
+import org.knowm.configuration.provider.UTF8StringConfigurationSourceProvider;
+import org.knowm.jackson.Jackson;
+import org.knowm.validation.BaseValidator;
 
 public class Konfig<T extends Konfigurable> {
 

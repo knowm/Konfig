@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.knowm.konfig</groupId>
     <artifactId>konfig-parent</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Konfig Parent</name>
     <description>Konfig is a tool to deserialize JSON/YAML configuration files, while additionally validating and auto-generating documentation.
