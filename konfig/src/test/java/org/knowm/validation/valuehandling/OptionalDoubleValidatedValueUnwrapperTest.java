@@ -23,17 +23,15 @@ public class OptionalDoubleValidatedValueUnwrapperTest {
     @UnwrapValidatedValue
     public OptionalDouble three = OptionalDouble.empty();
 
-    @NotNull
-    @UnwrapValidatedValue
-    public OptionalDouble notNull = OptionalDouble.of(123.456D);
+    @NotNull @UnwrapValidatedValue public OptionalDouble notNull = OptionalDouble.of(123.456D);
   }
 
-  private final Validator validator = Validation
-      .byProvider(HibernateValidator.class)
-      .configure()
-      .addValidatedValueHandler(new OptionalDoubleValidatedValueUnwrapper())
-      .buildValidatorFactory()
-      .getValidator();
+  private final Validator validator =
+      Validation.byProvider(HibernateValidator.class)
+          .configure()
+          .addValidatedValueHandler(new OptionalDoubleValidatedValueUnwrapper())
+          .buildValidatorFactory()
+          .getValidator();
 
   @Test
   public void succeedsWhenAbsent() {

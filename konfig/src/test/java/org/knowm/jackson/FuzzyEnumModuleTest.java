@@ -77,8 +77,7 @@ public class FuzzyEnumModuleTest {
 
   @Test
   public void mapsUpperCaseEnums() throws Exception {
-    assertThat(mapper.readValue("\"SECONDS\"", TimeUnit.class))
-        .isEqualTo(TimeUnit.SECONDS);
+    assertThat(mapper.readValue("\"SECONDS\"", TimeUnit.class)).isEqualTo(TimeUnit.SECONDS);
   }
 
   @Test
@@ -89,8 +88,7 @@ public class FuzzyEnumModuleTest {
 
   @Test
   public void mapsPaddedEnums() throws Exception {
-    assertThat(mapper.readValue("\"   MINUTES \"", TimeUnit.class))
-        .isEqualTo(TimeUnit.MINUTES);
+    assertThat(mapper.readValue("\"   MINUTES \"", TimeUnit.class)).isEqualTo(TimeUnit.MINUTES);
   }
 
   @Test
@@ -113,8 +111,7 @@ public class FuzzyEnumModuleTest {
 
   @Test
   public void mapsWhenEnumHasCreator() throws Exception {
-    assertThat(mapper.readValue("\"BLA\"", EnumWithCreator.class))
-        .isEqualTo(EnumWithCreator.TEST);
+    assertThat(mapper.readValue("\"BLA\"", EnumWithCreator.class)).isEqualTo(EnumWithCreator.TEST);
   }
 
   @Test
@@ -124,7 +121,8 @@ public class FuzzyEnumModuleTest {
       failBecauseExceptionWasNotThrown(JsonMappingException.class);
     } catch (JsonMappingException e) {
       assertThat(e.getOriginalMessage())
-          .isEqualTo("wrong was not one of [NANOSECONDS, MICROSECONDS, MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS]");
+          .isEqualTo(
+              "wrong was not one of [NANOSECONDS, MICROSECONDS, MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS]");
     }
   }
 
@@ -142,14 +140,16 @@ public class FuzzyEnumModuleTest {
 
   @Test
   public void readsEnumsUsingToString() throws Exception {
-    final ObjectMapper toStringEnumsMapper = mapper.copy()
-        .configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
-    assertThat(toStringEnumsMapper.readValue("\"Pound sterling\"", CurrencyCode.class)).isEqualTo(CurrencyCode.GBP);
+    final ObjectMapper toStringEnumsMapper =
+        mapper.copy().configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
+    assertThat(toStringEnumsMapper.readValue("\"Pound sterling\"", CurrencyCode.class))
+        .isEqualTo(CurrencyCode.GBP);
   }
 
   @Test
   public void readsEnumsUsingToStringWithDeserializationFeatureOff() throws Exception {
-    assertThat(mapper.readValue("\"Pound sterling\"", CurrencyCode.class)).isEqualTo(CurrencyCode.GBP);
+    assertThat(mapper.readValue("\"Pound sterling\"", CurrencyCode.class))
+        .isEqualTo(CurrencyCode.GBP);
     assertThat(mapper.readValue("\"a_u_d\"", CurrencyCode.class)).isEqualTo(CurrencyCode.AUD);
     assertThat(mapper.readValue("\"c-a-d\"", CurrencyCode.class)).isEqualTo(CurrencyCode.CAD);
     assertThat(mapper.readValue("\"b.l.a\"", CurrencyCode.class)).isEqualTo(CurrencyCode.BLA);
@@ -157,9 +157,11 @@ public class FuzzyEnumModuleTest {
 
   @Test
   public void testEnumWithJsonPropertyRename() throws Exception {
-    final String json = mapper.writeValueAsString(new EnumWithPropertyAnno[]{
-        EnumWithPropertyAnno.B, EnumWithPropertyAnno.A, EnumWithPropertyAnno.FORGOT_PASSWORD
-    });
+    final String json =
+        mapper.writeValueAsString(
+            new EnumWithPropertyAnno[] {
+              EnumWithPropertyAnno.B, EnumWithPropertyAnno.A, EnumWithPropertyAnno.FORGOT_PASSWORD
+            });
     assertThat(json).isEqualTo("[\"b b\",\"a a\",\"forgot password\"]");
 
     final EnumWithPropertyAnno[] result = mapper.readValue(json, EnumWithPropertyAnno[].class);

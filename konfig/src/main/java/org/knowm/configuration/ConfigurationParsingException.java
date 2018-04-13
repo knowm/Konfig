@@ -19,9 +19,7 @@ import com.fasterxml.jackson.core.JsonLocation;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.dataformat.yaml.snakeyaml.error.Mark;
 
-/**
- * A {@link ConfigurationException} for errors parsing a configuration file.
- */
+/** A {@link ConfigurationException} for errors parsing a configuration file. */
 public class ConfigurationParsingException extends ConfigurationException {
 
   static class Builder {
@@ -71,8 +69,8 @@ public class ConfigurationParsingException extends ConfigurationException {
     /**
      * Returns the path to the problematic JSON field, if there is one.
      *
-     * @return a {@link List} with each element in the path in order, beginning at the root; or
-     * an empty list if there is no JSON field in the context of this error.
+     * @return a {@link List} with each element in the path in order, beginning at the root; or an
+     *     empty list if there is no JSON field in the context of this error.
      */
     public List<JsonMappingException.Reference> getFieldPath() {
       return fieldPath;
@@ -81,8 +79,8 @@ public class ConfigurationParsingException extends ConfigurationException {
     /**
      * Determines if the path to a JSON field has been set.
      *
-     * @return true if the path to a JSON field has been set for the error; false if no path has
-     * yet been set.
+     * @return true if the path to a JSON field has been set for the error; false if no path has yet
+     *     been set.
      */
     public boolean hasFieldPath() {
       return fieldPath != null && !fieldPath.isEmpty();
@@ -90,8 +88,8 @@ public class ConfigurationParsingException extends ConfigurationException {
 
     /**
      * Returns the line number of the source of the problem.
-     * <p/>
-     * Note: the line number is indexed from zero.
+     *
+     * <p>Note: the line number is indexed from zero.
      *
      * @return the line number of the source of the problem, or -1 if unknown.
      */
@@ -101,8 +99,8 @@ public class ConfigurationParsingException extends ConfigurationException {
 
     /**
      * Returns the column number of the source of the problem.
-     * <p/>
-     * Note: the column number is indexed from zero.
+     *
+     * <p>Note: the column number is indexed from zero.
      *
      * @return the column number of the source of the problem, or -1 if unknown.
      */
@@ -113,8 +111,8 @@ public class ConfigurationParsingException extends ConfigurationException {
     /**
      * Determines if a location (line and column numbers) have been set.
      *
-     * @return true if both a line and column number has been set; false if only one or neither
-     * have been set.
+     * @return true if both a line and column number has been set; false if only one or neither have
+     *     been set.
      */
     public boolean hasLocation() {
       return line > -1 && column > -1;
@@ -122,10 +120,10 @@ public class ConfigurationParsingException extends ConfigurationException {
 
     /**
      * Returns a list of suggestions.
-     * <p/>
-     * If a {@link #getSuggestionBase() suggestion-base} has been set, the suggestions will be
-     * sorted according to the suggestion-base such that suggestions close to the base appear
-     * first in the list.
+     *
+     * <p>If a {@link #getSuggestionBase() suggestion-base} has been set, the suggestions will be
+     * sorted according to the suggestion-base such that suggestions close to the base appear first
+     * in the list.
      *
      * @return a list of suggestions, or the empty list if there are no suggestions available.
      */
@@ -152,8 +150,8 @@ public class ConfigurationParsingException extends ConfigurationException {
 
     /**
      * Returns the base for ordering suggestions.
-     * <p/>
-     * Suggestions will be ordered such that suggestions closer to the base will appear first.
+     *
+     * <p>Suggestions will be ordered such that suggestions closer to the base will appear first.
      *
      * @return the base for suggestions.
      */
@@ -163,8 +161,8 @@ public class ConfigurationParsingException extends ConfigurationException {
 
     /**
      * Determines whether a suggestion base is available.
-     * <p/>
-     * If no base is available, suggestions will not be sorted.
+     *
+     * <p>If no base is available, suggestions will not be sorted.
      *
      * @return true if a base is available for suggestions; false if there is none.
      */
@@ -206,15 +204,11 @@ public class ConfigurationParsingException extends ConfigurationException {
     }
 
     Builder setLocation(JsonLocation location) {
-      return location == null
-          ? this
-          : setLocation(location.getLineNr(), location.getColumnNr());
+      return location == null ? this : setLocation(location.getLineNr(), location.getColumnNr());
     }
 
     Builder setLocation(Mark mark) {
-      return mark == null
-          ? this
-          : setLocation(mark.getLine(), mark.getColumn());
+      return mark == null ? this : setLocation(mark.getLine(), mark.getColumn());
     }
 
     Builder setLocation(int line, int column) {
@@ -246,8 +240,7 @@ public class ConfigurationParsingException extends ConfigurationException {
       if (hasFieldPath()) {
         sb.append(" at: ").append(buildPath(getFieldPath()));
       } else if (hasLocation()) {
-        sb.append(" at line: ").append(getLine() + 1)
-            .append(", column: ").append(getColumn() + 1);
+        sb.append(" at line: ").append(getLine() + 1).append(", column: ").append(getColumn() + 1);
       }
 
       if (hasDetail()) {
@@ -312,14 +305,14 @@ public class ConfigurationParsingException extends ConfigurationException {
 
       /**
        * Compares two Strings with respect to the base String, by Levenshtein distance.
-       * <p/>
-       * The input that is the closest match to the base String will sort before the other.
+       *
+       * <p>The input that is the closest match to the base String will sort before the other.
        *
        * @param a an input to compare relative to the base.
        * @param b an input to compare relative to the base.
-       * @return -1 if {@code a} is closer to the base than {@code b}; 1 if {@code b} is
-       * closer to the base than {@code a}; 0 if both {@code a} and {@code b} are
-       * equally close to the base.
+       * @return -1 if {@code a} is closer to the base than {@code b}; 1 if {@code b} is closer to
+       *     the base than {@code a}; 0 if both {@code a} and {@code b} are equally close to the
+       *     base.
        */
       @Override
       public int compare(String a, String b) {
@@ -334,7 +327,8 @@ public class ConfigurationParsingException extends ConfigurationException {
         }
 
         // determine which of the two is closer to the base and order it first
-        return Integer.compare(StringUtils.getLevenshteinDistance(a, base),
+        return Integer.compare(
+            StringUtils.getLevenshteinDistance(a, base),
             StringUtils.getLevenshteinDistance(b, base));
       }
 
@@ -349,7 +343,8 @@ public class ConfigurationParsingException extends ConfigurationException {
   }
 
   /**
-   * Create a mutable {@link Builder} to incrementally build a {@link ConfigurationParsingException}.
+   * Create a mutable {@link Builder} to incrementally build a {@link
+   * ConfigurationParsingException}.
    *
    * @param brief the brief summary of the error.
    * @return a mutable builder to incrementally build a {@link ConfigurationParsingException}.
@@ -378,5 +373,4 @@ public class ConfigurationParsingException extends ConfigurationException {
   private ConfigurationParsingException(String path, String msg, Throwable cause) {
     super(path, new HashSet<>(Arrays.asList(msg)), cause);
   }
-
 }

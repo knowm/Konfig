@@ -142,7 +142,6 @@ public class Duration implements Comparable<Duration> {
     }
     final Duration duration = (Duration) obj;
     return (count == duration.count) && (unit == duration.unit);
-
   }
 
   @Override

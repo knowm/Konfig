@@ -25,12 +25,13 @@ import com.fasterxml.jackson.databind.introspect.AnnotatedMethod;
 
 /**
  * A module for deserializing enums that is more permissive than the default.
- * <p/>
- * This deserializer is more permissive in the following ways:
+ *
+ * <p>This deserializer is more permissive in the following ways:
+ *
  * <ul>
- * <li>Whitespace is permitted but stripped from the input.</li>
- * <li>Dashes and periods in the value are converted to underscores.</li>
- * <li>Matching against the enum values is case insensitive.</li>
+ *   <li>Whitespace is permitted but stripped from the input.
+ *   <li>Dashes and periods in the value are converted to underscores.
+ *   <li>Matching against the enum values is case insensitive.
  * </ul>
  */
 public class FuzzyEnumModule extends Module {
@@ -63,16 +64,17 @@ public class FuzzyEnumModule extends Module {
   private static class PermissiveEnumDeserializers extends Deserializers.Base {
     @Override
     @SuppressWarnings("unchecked")
-    public JsonDeserializer<?> findEnumDeserializer(Class<?> type,
-        DeserializationConfig config,
-        BeanDescription desc) throws JsonMappingException {
+    public JsonDeserializer<?> findEnumDeserializer(
+        Class<?> type, DeserializationConfig config, BeanDescription desc)
+        throws JsonMappingException {
       // If the user configured to use `toString` method to deserialize enums
       if (config.hasDeserializationFeatures(
           DeserializationFeature.READ_ENUMS_USING_TO_STRING.getMask())) {
         return null;
       }
 
-      // If there is a JsonCreator annotation we should use that instead of the PermissiveEnumDeserializer
+      // If there is a JsonCreator annotation we should use that instead of the
+      // PermissiveEnumDeserializer
       final Collection<AnnotatedMethod> factoryMethods = desc.getFactoryMethods();
       if (factoryMethods != null) {
         for (AnnotatedMethod am : factoryMethods) {

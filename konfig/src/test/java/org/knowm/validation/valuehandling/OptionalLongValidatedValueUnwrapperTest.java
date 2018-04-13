@@ -23,17 +23,15 @@ public class OptionalLongValidatedValueUnwrapperTest {
     @UnwrapValidatedValue
     public OptionalLong three = OptionalLong.empty();
 
-    @NotNull
-    @UnwrapValidatedValue
-    public OptionalLong notNull = OptionalLong.of(123456789L);
+    @NotNull @UnwrapValidatedValue public OptionalLong notNull = OptionalLong.of(123456789L);
   }
 
-  private final Validator validator = Validation
-      .byProvider(HibernateValidator.class)
-      .configure()
-      .addValidatedValueHandler(new OptionalLongValidatedValueUnwrapper())
-      .buildValidatorFactory()
-      .getValidator();
+  private final Validator validator =
+      Validation.byProvider(HibernateValidator.class)
+          .configure()
+          .addValidatedValueHandler(new OptionalLongValidatedValueUnwrapper())
+          .buildValidatorFactory()
+          .getValidator();
 
   @Test
   public void succeedsWhenAbsent() {

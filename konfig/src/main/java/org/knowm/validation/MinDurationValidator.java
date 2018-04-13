@@ -8,8 +8,8 @@ import javax.validation.ConstraintValidatorContext;
 import org.knowm.util.Duration;
 
 /**
- * Check that a {@link Duration} being validated is greater than or equal to the
- * minimum value specified.
+ * Check that a {@link Duration} being validated is greater than or equal to the minimum value
+ * specified.
  */
 public class MinDurationValidator implements ConstraintValidator<MinDuration, Duration> {
 

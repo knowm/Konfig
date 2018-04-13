@@ -10,8 +10,8 @@ import java.lang.annotation.Target;
 import javax.validation.groups.Default;
 
 /**
- * Due to limit of @see javax.validation.Valid Annotation for validation groups and ordered validations,
- * this annotation is serving supplementary purposes to validation process.
+ * Due to limit of @see javax.validation.Valid Annotation for validation groups and ordered
+ * validations, this annotation is serving supplementary purposes to validation process.
  */
 @Target({PARAMETER, METHOD})
 @Retention(RUNTIME)

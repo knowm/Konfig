@@ -1,32 +1,20 @@
 package org.knowm.util;
 
-/**
- * A unit of size.
- */
+/** A unit of size. */
 public enum SizeUnit {
-  /**
-   * Bytes.
-   */
+  /** Bytes. */
   BYTES(8),
 
-  /**
-   * Kilobytes.
-   */
+  /** Kilobytes. */
   KILOBYTES(8L * 1024),
 
-  /**
-   * Megabytes.
-   */
+  /** Megabytes. */
   MEGABYTES(8L * 1024 * 1024),
 
-  /**
-   * Gigabytes.
-   */
+  /** Gigabytes. */
   GIGABYTES(8L * 1024 * 1024 * 1024),
 
-  /**
-   * Terabytes.
-   */
+  /** Terabytes. */
   TERABYTES(8L * 1024 * 1024 * 1024 * 1024);
 
   private final long bits;

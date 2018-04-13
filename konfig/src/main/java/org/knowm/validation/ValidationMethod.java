@@ -13,8 +13,8 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * Validates a bean predicate method as returning true. Bean predicates must be of the form
- * {@code isSomething} or they'll be silently ignored.
+ * Validates a bean predicate method as returning true. Bean predicates must be of the form {@code
+ * isSomething} or they'll be silently ignored.
  */
 @Target({TYPE, ANNOTATION_TYPE, METHOD})
 @Retention(RUNTIME)
@@ -25,5 +25,6 @@ public @interface ValidationMethod {
 
   Class<?>[] groups() default {};
 
-  @SuppressWarnings("UnusedDeclaration") Class<? extends Payload>[] payload() default {};
+  @SuppressWarnings("UnusedDeclaration")
+  Class<? extends Payload>[] payload() default {};
 }

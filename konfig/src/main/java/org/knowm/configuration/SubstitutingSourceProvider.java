@@ -11,8 +11,9 @@ import org.apache.commons.lang3.text.StrSubstitutor;
 import org.knowm.configuration.provider.ConfigurationSourceProvider;
 
 /**
- * A delegating {@link ConfigurationSourceProvider} which replaces variables in the underlying configuration
- * source according to the rules of a custom {@link org.apache.commons.lang3.text.StrSubstitutor}.
+ * A delegating {@link ConfigurationSourceProvider} which replaces variables in the underlying
+ * configuration source according to the rules of a custom {@link
+ * org.apache.commons.lang3.text.StrSubstitutor}.
  */
 public class SubstitutingSourceProvider implements ConfigurationSourceProvider {
 
@@ -22,10 +23,13 @@ public class SubstitutingSourceProvider implements ConfigurationSourceProvider {
   /**
    * Create a new instance.
    *
-   * @param delegate The underlying {@link org.knowm.configuration.provider.ConfigurationSourceProvider}.
-   * @param substitutor The custom {@link org.apache.commons.lang3.text.StrSubstitutor} implementation.
+   * @param delegate The underlying {@link
+   *     org.knowm.configuration.provider.ConfigurationSourceProvider}.
+   * @param substitutor The custom {@link org.apache.commons.lang3.text.StrSubstitutor}
+   *     implementation.
    */
-  public SubstitutingSourceProvider(ConfigurationSourceProvider delegate, StrSubstitutor substitutor) {
+  public SubstitutingSourceProvider(
+      ConfigurationSourceProvider delegate, StrSubstitutor substitutor) {
 
     this.delegate = requireNonNull(delegate);
     this.substitutor = requireNonNull(substitutor);
@@ -48,5 +52,4 @@ public class SubstitutingSourceProvider implements ConfigurationSourceProvider {
     java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
     return s.hasNext() ? s.next() : "";
   }
-
 }

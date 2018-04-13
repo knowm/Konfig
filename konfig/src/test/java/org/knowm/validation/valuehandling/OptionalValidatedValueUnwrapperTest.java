@@ -26,16 +26,14 @@ public class OptionalValidatedValueUnwrapperTest {
     @UnwrapValidatedValue
     public Optional<Integer> three = Optional.empty();
 
-    @NotNull
-    @UnwrapValidatedValue
-    public Optional<Integer> notNull = Optional.of(123);
+    @NotNull @UnwrapValidatedValue public Optional<Integer> notNull = Optional.of(123);
   }
 
-  private final Validator validator = Validation
-      .byProvider(HibernateValidator.class)
-      .configure()
-      .buildValidatorFactory()
-      .getValidator();
+  private final Validator validator =
+      Validation.byProvider(HibernateValidator.class)
+          .configure()
+          .buildValidatorFactory()
+          .getValidator();
 
   @Test
   public void succeedsWhenAbsent() {

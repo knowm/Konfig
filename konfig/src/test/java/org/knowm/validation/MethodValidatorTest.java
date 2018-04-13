@@ -22,8 +22,7 @@ public class MethodValidatorTest {
   }
 
   public static class Example {
-    @Valid
-    private SubExample subExample = new SubExample();
+    @Valid private SubExample subExample = new SubExample();
 
     @ValidationMethod(message = "must have a false thing")
     public boolean isFalse() {
@@ -40,11 +39,8 @@ public class MethodValidatorTest {
 
   @Test
   public void complainsAboutMethodsWhichReturnFalse() throws Exception {
-    final List<String> errors =
-        ConstraintViolations.format(validator.validate(new Example()));
+    final List<String> errors = ConstraintViolations.format(validator.validate(new Example()));
 
-    assertThat(errors)
-        .containsOnly("must have a false thing",
-            "also needs something special");
+    assertThat(errors).containsOnly("must have a false thing", "also needs something special");
   }
 }

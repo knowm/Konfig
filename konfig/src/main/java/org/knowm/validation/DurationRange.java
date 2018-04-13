@@ -19,8 +19,8 @@ import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
 
 /**
- * The annotated element has to be in the appropriate range. Apply on
- * {@link org.knowm.util.Duration} instances.
+ * The annotated element has to be in the appropriate range. Apply on {@link
+ * org.knowm.util.Duration} instances.
  */
 @Documented
 @Constraint(validatedBy = {})
@@ -37,20 +37,19 @@ public @interface DurationRange {
   long max() default Long.MAX_VALUE;
 
   @OverridesAttribute.List({
-                               @OverridesAttribute(constraint = MinDuration.class, name = "unit"),
-                               @OverridesAttribute(constraint = MaxDuration.class, name = "unit")
-                           })
+    @OverridesAttribute(constraint = MinDuration.class, name = "unit"),
+    @OverridesAttribute(constraint = MaxDuration.class, name = "unit")
+  })
   TimeUnit unit() default TimeUnit.SECONDS;
 
   String message() default "must be between {min} {unit} and {max} {unit}";
 
   Class<?>[] groups() default {};
 
-  @SuppressWarnings("UnusedDeclaration") Class<? extends Payload>[] payload() default {};
+  @SuppressWarnings("UnusedDeclaration")
+  Class<? extends Payload>[] payload() default {};
 
-  /**
-   * Defines several {@code @DurationRange} annotations on the same element.
-   */
+  /** Defines several {@code @DurationRange} annotations on the same element. */
   @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER})
   @Retention(RUNTIME)
   @Documented

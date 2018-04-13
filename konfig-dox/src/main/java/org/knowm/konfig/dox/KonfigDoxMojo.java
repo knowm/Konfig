@@ -1,21 +1,19 @@
 /**
  * Copyright 2017 Knowm Inc. (http://knowm.org) and contributors.
  *
- * This package also includes additional source code that is not
- * part of Konfig itself:
+ * <p>This package also includes additional source code that is not part of Konfig itself:
  *
- * * `Dropwizard-Configuration`: Copyright 2010-2013 Coda Hale and Yammer, Inc., 2014-2016 Dropwizard Team, Apache 2 License.
+ * <p>* `Dropwizard-Configuration`: Copyright 2010-2013 Coda Hale and Yammer, Inc., 2014-2016
+ * Dropwizard Team, Apache 2 License.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * <p>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
+ * <p>Unless required by applicable law or agreed to in writing, software distributed under the
+ * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing permissions and
  * limitations under the License.
  */
 package org.knowm.konfig.dox;
@@ -42,33 +40,27 @@ import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
 
-/**
- * @phase process-sources
- */
+/** @phase process-sources */
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class KonfigDoxMojo extends AbstractMojo {
 
-  /**
-   * Location of source code
-   */
+  /** Location of source code */
   @Parameter(defaultValue = "${project.basedir}/src/main/java", readonly = true, required = true)
   private File sourcesDirectory;
 
-  /**
-   * Location of resources
-   */
-  @Parameter(defaultValue = "${project.basedir}/src/main/resources", readonly = true, required = true)
+  /** Location of resources */
+  @Parameter(
+    defaultValue = "${project.basedir}/src/main/resources",
+    readonly = true,
+    required = true
+  )
   private File resourcesDirectory;
 
-  /**
-   * Class to include in search
-   */
+  /** Class to include in search */
   @Parameter(defaultValue = "org.knowm.konfig.Konfigurable", readonly = true, required = true)
   private String konfigurable;
 
-  /**
-   * A set of packages to look for Konfigurables
-   */
+  /** A set of packages to look for Konfigurables */
   @Parameter(property = "packages", readonly = true, required = true)
   private String[] packages;
 
@@ -81,13 +73,15 @@ public class KonfigDoxMojo extends AbstractMojo {
 
     for (int i = 0; i < packages.length; i++) {
 
-      String converted2Path = sourcesDirectory.getPath() + File.separatorChar + packages[i].replace(".", "/");
+      String converted2Path =
+          sourcesDirectory.getPath() + File.separatorChar + packages[i].replace(".", "/");
 
       getLog().info("Searching package: " + converted2Path + " for " + konfigurable + "s...");
 
-      List<String> konfigurableClasses = QDoxUtil.getDiscoverableClassNames(converted2Path, konfigurable);
+      List<String> konfigurableClasses =
+          QDoxUtil.getDiscoverableClassNames(converted2Path, konfigurable);
 
-      getLog().debug("konfigurableClasses = " + konfigurableClasses);
+      getLog().info("konfigurableClasses = " + konfigurableClasses);
 
       konfigurableMetaData.addAll(QDoxUtil.generateModel(converted2Path, konfigurableClasses));
     }
@@ -110,7 +104,6 @@ public class KonfigDoxMojo extends AbstractMojo {
         getLog().info(discoverableProperty.toString());
       }
       getLog().info("-");
-
     }
   }
 
@@ -119,14 +112,19 @@ public class KonfigDoxMojo extends AbstractMojo {
     try {
       ObjectMapper mapper = new ObjectMapper();
       String modelAsString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(model);
-      Writer fileWriter = new FileWriter(new File(resourcesDirectory.getPath() + File.separatorChar + metaInfFileName.substring(metaInfFileName.lastIndexOf(".") + 1) + ".json"));
+      Writer fileWriter =
+          new FileWriter(
+              new File(
+                  resourcesDirectory.getPath()
+                      + File.separatorChar
+                      + metaInfFileName.substring(metaInfFileName.lastIndexOf(".") + 1)
+                      + ".json"));
       fileWriter.write(modelAsString);
       fileWriter.close();
 
     } catch (Exception e) {
       e.printStackTrace();
     }
-
   }
 
   private void renderModelWithFreemarker(List<KonfigurableMetaData> model, String metaInfFileName) {
@@ -163,7 +161,13 @@ public class KonfigDoxMojo extends AbstractMojo {
       // template.process(input, consoleWriter);
 
       // write output into a file:
-      Writer fileWriter = new FileWriter(new File(resourcesDirectory.getPath() + File.separatorChar + metaInfFileName.substring(metaInfFileName.lastIndexOf(".") + 1) + ".html"));
+      Writer fileWriter =
+          new FileWriter(
+              new File(
+                  resourcesDirectory.getPath()
+                      + File.separatorChar
+                      + metaInfFileName.substring(metaInfFileName.lastIndexOf(".") + 1)
+                      + ".html"));
       try {
         template.process(input, fileWriter);
       } finally {
@@ -172,6 +176,5 @@ public class KonfigDoxMojo extends AbstractMojo {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
   }
 }

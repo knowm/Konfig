@@ -7,15 +7,16 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
-/**
- * A utility class for Jackson.
- */
+/** A utility class for Jackson. */
 public class Jackson {
-  private Jackson() { /* singleton */ }
+  private Jackson() {
+    /* singleton */
+  }
 
   /**
    * Creates a new {@link ObjectMapper} with Guava, Logback, and Joda Time support, as well as
-   * support for {@link JsonSnakeCase}. Also includes all {@link Discoverable} interface implementations.
+   * support for {@link JsonSnakeCase}. Also includes all {@link Discoverable} interface
+   * implementations.
    */
   public static ObjectMapper newObjectMapper() {
     final ObjectMapper mapper = new ObjectMapper();
@@ -25,11 +26,11 @@ public class Jackson {
 
   /**
    * Creates a new {@link ObjectMapper} with a custom {@link com.fasterxml.jackson.core.JsonFactory}
-   * with Guava, Logback, and Joda Time support, as well as support for {@link JsonSnakeCase}.
-   * Also includes all {@link Discoverable} interface implementations.
+   * with Guava, Logback, and Joda Time support, as well as support for {@link JsonSnakeCase}. Also
+   * includes all {@link Discoverable} interface implementations.
    *
-   * @param jsonFactory instance of {@link com.fasterxml.jackson.core.JsonFactory} to use
-   * for the created {@link com.fasterxml.jackson.databind.ObjectMapper} instance.
+   * @param jsonFactory instance of {@link com.fasterxml.jackson.core.JsonFactory} to use for the
+   *     created {@link com.fasterxml.jackson.databind.ObjectMapper} instance.
    */
   public static ObjectMapper newObjectMapper(JsonFactory jsonFactory) {
     final ObjectMapper mapper = new ObjectMapper(jsonFactory);
@@ -39,8 +40,9 @@ public class Jackson {
 
   /**
    * Creates a new minimal {@link ObjectMapper} that will work with Dropwizard out of box.
-   * <p><b>NOTE:</b> Use it, if the default Dropwizard's {@link ObjectMapper}, created in
-   * {@link #newObjectMapper()}, is too aggressive for you.</p>
+   *
+   * <p><b>NOTE:</b> Use it, if the default Dropwizard's {@link ObjectMapper}, created in {@link
+   * #newObjectMapper()}, is too aggressive for you.
    */
   public static ObjectMapper newMinimalObjectMapper() {
     return new ObjectMapper();

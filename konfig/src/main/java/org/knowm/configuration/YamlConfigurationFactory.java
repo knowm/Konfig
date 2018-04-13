@@ -7,7 +7,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 /**
  * A factory class for loading YAML configuration files, binding them to configuration objects, and
- * validating their constraints. Allows for overriding configuration parameters from system properties.
+ * validating their constraints. Allows for overriding configuration parameters from system
+ * properties.
  *
  * @param <T> the type of the configuration objects to produce
  */
@@ -21,10 +22,14 @@ public class YamlConfigurationFactory<T> extends BaseConfigurationFactory<T> {
    * @param objectMapper the Jackson {@link ObjectMapper} to use
    * @param propertyPrefix the system property name prefix used by overrides
    */
-  public YamlConfigurationFactory(Class<T> klass,
-      Validator validator,
-      ObjectMapper objectMapper,
-      String propertyPrefix) {
-    super(new YAMLFactory(), YAMLFactory.FORMAT_NAME_YAML, klass, validator, objectMapper, propertyPrefix);
+  public YamlConfigurationFactory(
+      Class<T> klass, Validator validator, ObjectMapper objectMapper, String propertyPrefix) {
+    super(
+        new YAMLFactory(),
+        YAMLFactory.FORMAT_NAME_YAML,
+        klass,
+        validator,
+        objectMapper,
+        propertyPrefix);
   }
 }

@@ -9,7 +9,9 @@ import javax.validation.ConstraintViolation;
 
 public class ConstraintViolations {
 
-  private ConstraintViolations() { /* singleton */ }
+  private ConstraintViolations() {
+    /* singleton */
+  }
 
   public static <T> String format(ConstraintViolation<T> v) {
     if (v.getConstraintDescriptor().getAnnotation() instanceof ValidationMethod) {

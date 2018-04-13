@@ -15,9 +15,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-/**
- * Checks to see that the value is one of a set of elements.
- */
+/** Checks to see that the value is one of a set of elements. */
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Documented
@@ -27,20 +25,15 @@ public @interface OneOf {
 
   Class<?>[] groups() default {};
 
-  @SuppressWarnings("UnusedDeclaration") Class<? extends Payload>[] payload() default {};
+  @SuppressWarnings("UnusedDeclaration")
+  Class<? extends Payload>[] payload() default {};
 
-  /**
-   * The set of valid values.
-   */
+  /** The set of valid values. */
   String[] value();
 
-  /**
-   * Whether or not to ignore case.
-   */
+  /** Whether or not to ignore case. */
   boolean ignoreCase() default false;
 
-  /**
-   * Whether or not to ignore leading and trailing whitespace.
-   */
+  /** Whether or not to ignore leading and trailing whitespace. */
   boolean ignoreWhitespace() default false;
 }

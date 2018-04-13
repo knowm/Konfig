@@ -1,4 +1,3 @@
 package org.knowm.jackson;
 
-public interface ExampleTag {
-}
+public interface ExampleTag {}

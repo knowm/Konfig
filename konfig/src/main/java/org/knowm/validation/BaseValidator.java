@@ -10,11 +10,11 @@ import org.knowm.valuehandling.OptionalIntValidatedValueUnwrapper;
 import org.knowm.valuehandling.OptionalLongValidatedValueUnwrapper;
 
 public class BaseValidator {
-  private BaseValidator() { /* singleton */ }
+  private BaseValidator() {
+    /* singleton */
+  }
 
-  /**
-   * Creates a new {@link Validator} based on {@link #newConfiguration()}
-   */
+  /** Creates a new {@link Validator} based on {@link #newConfiguration()} */
   public static Validator newValidator() {
     return newConfiguration().buildValidatorFactory().getValidator();
   }
@@ -24,8 +24,7 @@ public class BaseValidator {
    * org.hibernate.validator.spi.valuehandling.ValidatedValueUnwrapper} registered.
    */
   public static HibernateValidatorConfiguration newConfiguration() {
-    return Validation
-        .byProvider(HibernateValidator.class)
+    return Validation.byProvider(HibernateValidator.class)
         .configure()
         .addValidatedValueHandler(new OptionalDoubleValidatedValueUnwrapper())
         .addValidatedValueHandler(new OptionalIntValidatedValueUnwrapper())

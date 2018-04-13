@@ -18,8 +18,7 @@ import org.knowm.validation.BaseValidator;
 
 public class ConfigurationValidationExceptionTest {
   private static class Example {
-    @NotNull
-    String woo;
+    @NotNull String woo;
   }
 
   private ConfigurationValidationException e;
@@ -36,15 +35,11 @@ public class ConfigurationValidationExceptionTest {
   @Test
   public void formatsTheViolationsIntoAHumanReadableMessage() throws Exception {
     assertThat(e.getMessage())
-        .isEqualTo(String.format(
-            "config.yml has an error:%n" +
-                "  * woo may not be null%n"
-        ));
+        .isEqualTo(String.format("config.yml has an error:%n" + "  * woo may not be null%n"));
   }
 
   @Test
   public void retainsTheSetOfExceptions() throws Exception {
-    assertThat(e.getConstraintViolations())
-        .isNotEmpty();
+    assertThat(e.getConstraintViolations()).isNotEmpty();
   }
 }

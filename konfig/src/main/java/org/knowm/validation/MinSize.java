@@ -18,10 +18,10 @@ import javax.validation.Payload;
 import org.knowm.util.SizeUnit;
 
 /**
- * The annotated element must be a {@link org.knowm.util.Size}
- * whose value must be higher or equal to the specified minimum.
- * <p/>
- * <code>null</code> elements are considered valid
+ * The annotated element must be a {@link org.knowm.util.Size} whose value must be higher or equal
+ * to the specified minimum.
+ *
+ * <p><code>null</code> elements are considered valid
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
@@ -32,15 +32,12 @@ public @interface MinSize {
 
   Class<?>[] groups() default {};
 
-  @SuppressWarnings("UnusedDeclaration") Class<? extends Payload>[] payload() default {};
+  @SuppressWarnings("UnusedDeclaration")
+  Class<? extends Payload>[] payload() default {};
 
-  /**
-   * @return value the element must be higher or equal to
-   */
+  /** @return value the element must be higher or equal to */
   long value();
 
-  /**
-   * @return unit of the value the element must be higher or equal to
-   */
+  /** @return unit of the value the element must be higher or equal to */
   SizeUnit unit() default SizeUnit.BYTES;
 }

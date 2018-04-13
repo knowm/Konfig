@@ -19,14 +19,16 @@ import org.knowm.configuration.provider.ConfigurationSourceProvider;
 public class SubstitutingSourceProviderTest {
   @Test
   public void shouldSubstituteCorrectly() throws IOException {
-    StrLookup<?> dummyLookup = new StrLookup<Object>() {
-      @Override
-      public String lookup(String key) {
-        return "baz";
-      }
-    };
+    StrLookup<?> dummyLookup =
+        new StrLookup<Object>() {
+          @Override
+          public String lookup(String key) {
+            return "baz";
+          }
+        };
     DummySourceProvider dummyProvider = new DummySourceProvider();
-    SubstitutingSourceProvider provider = new SubstitutingSourceProvider(dummyProvider, new StrSubstitutor(dummyLookup));
+    SubstitutingSourceProvider provider =
+        new SubstitutingSourceProvider(dummyProvider, new StrSubstitutor(dummyLookup));
 
     Scanner s = new Scanner(provider.open("foo: ${bar}")).useDelimiter("\\A");
     String results = s.hasNext() ? s.next() : "";
@@ -44,13 +46,15 @@ public class SubstitutingSourceProviderTest {
 
   @Test
   public void shouldSubstituteOnlyExistingVariables() throws IOException {
-    StrLookup<?> dummyLookup = new StrLookup<Object>() {
-      @Override
-      public String lookup(String key) {
-        return null;
-      }
-    };
-    SubstitutingSourceProvider provider = new SubstitutingSourceProvider(new DummySourceProvider(), new StrSubstitutor(dummyLookup));
+    StrLookup<?> dummyLookup =
+        new StrLookup<Object>() {
+          @Override
+          public String lookup(String key) {
+            return null;
+          }
+        };
+    SubstitutingSourceProvider provider =
+        new SubstitutingSourceProvider(new DummySourceProvider(), new StrSubstitutor(dummyLookup));
 
     Scanner s = new Scanner(provider.open("foo: ${bar}")).useDelimiter("\\A");
     String results = s.hasNext() ? s.next() : "";
@@ -60,13 +64,15 @@ public class SubstitutingSourceProviderTest {
 
   @Test
   public void shouldSubstituteWithDefaultValue() throws IOException {
-    StrLookup<?> dummyLookup = new StrLookup<Object>() {
-      @Override
-      public String lookup(String key) {
-        return null;
-      }
-    };
-    SubstitutingSourceProvider provider = new SubstitutingSourceProvider(new DummySourceProvider(), new StrSubstitutor(dummyLookup));
+    StrLookup<?> dummyLookup =
+        new StrLookup<Object>() {
+          @Override
+          public String lookup(String key) {
+            return null;
+          }
+        };
+    SubstitutingSourceProvider provider =
+        new SubstitutingSourceProvider(new DummySourceProvider(), new StrSubstitutor(dummyLookup));
 
     Scanner s = new Scanner(provider.open("foo: ${bar:-default}")).useDelimiter("\\A");
     String results = s.hasNext() ? s.next() : "";
@@ -80,7 +86,8 @@ public class SubstitutingSourceProviderTest {
     @Override
     public InputStream open(String s) throws IOException {
       // used to test that the stream is properly closed
-      lastStream = new BufferedInputStream(new ByteArrayInputStream(s.getBytes(StandardCharsets.UTF_8)));
+      lastStream =
+          new BufferedInputStream(new ByteArrayInputStream(s.getBytes(StandardCharsets.UTF_8)));
       return lastStream;
     }
   }

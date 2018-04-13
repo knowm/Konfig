@@ -2,9 +2,7 @@ package org.knowm.configuration;
 
 import org.apache.commons.lang3.text.StrSubstitutor;
 
-/**
- * A custom {@link StrSubstitutor} using environment variables as lookup source.
- */
+/** A custom {@link StrSubstitutor} using environment variables as lookup source. */
 public class EnvironmentVariableSubstitutor extends StrSubstitutor {
   public EnvironmentVariableSubstitutor() {
     this(true, false);
@@ -15,8 +13,8 @@ public class EnvironmentVariableSubstitutor extends StrSubstitutor {
   }
 
   /**
-   * @param strict {@code true} if looking up undefined environment variables should throw a
-   * {@link UndefinedEnvironmentVariableException}, {@code false} otherwise.
+   * @param strict {@code true} if looking up undefined environment variables should throw a {@link
+   *     UndefinedEnvironmentVariableException}, {@code false} otherwise.
    * @param substitutionInVariables a flag whether substitution is done in variable names.
    * @see org.knowm.configuration.EnvironmentVariableLookup#EnvironmentVariableLookup(boolean)
    * @see org.apache.commons.lang3.text.StrSubstitutor#setEnableSubstitutionInVariables(boolean)

@@ -3,14 +3,10 @@ package org.knowm.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-/**
- * A validator for {@link ValidationMethod}-annotated methods.
- */
+/** A validator for {@link ValidationMethod}-annotated methods. */
 public class MethodValidator implements ConstraintValidator<ValidationMethod, Boolean> {
   @Override
-  public void initialize(ValidationMethod constraintAnnotation) {
-
-  }
+  public void initialize(ValidationMethod constraintAnnotation) {}
 
   @Override
   public boolean isValid(Boolean value, ConstraintValidatorContext context) {

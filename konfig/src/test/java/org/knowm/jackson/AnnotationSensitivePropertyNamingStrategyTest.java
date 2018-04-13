@@ -13,12 +13,10 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 
 public class AnnotationSensitivePropertyNamingStrategyTest {
   public static class RegularExample {
-    @JsonProperty
-    String firstName;
+    @JsonProperty String firstName;
 
     @SuppressWarnings("UnusedDeclaration") // Jackson
-    private RegularExample() {
-    }
+    private RegularExample() {}
 
     public RegularExample(String firstName) {
       this.firstName = firstName;
@@ -27,12 +25,10 @@ public class AnnotationSensitivePropertyNamingStrategyTest {
 
   @JsonSnakeCase
   public static class SnakeCaseExample {
-    @JsonProperty
-    String firstName;
+    @JsonProperty String firstName;
 
     @SuppressWarnings("UnusedDeclaration") // Jackson
-    private SnakeCaseExample() {
-    }
+    private SnakeCaseExample() {}
 
     public SnakeCaseExample(String firstName) {
       this.firstName = firstName;

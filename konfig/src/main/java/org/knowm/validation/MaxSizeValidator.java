@@ -7,8 +7,7 @@ import org.knowm.util.Size;
 import org.knowm.util.SizeUnit;
 
 /**
- * Check that a {@link Size} being validated is less than or equal to the
- * minimum value specified.
+ * Check that a {@link Size} being validated is less than or equal to the minimum value specified.
  */
 public class MaxSizeValidator implements ConstraintValidator<MaxSize, Size> {
 

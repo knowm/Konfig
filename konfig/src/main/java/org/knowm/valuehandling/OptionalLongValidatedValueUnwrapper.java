@@ -9,17 +9,18 @@ import java.util.OptionalLong;
 /**
  * A {@link ValidatedValueUnwrapper} for {@link OptionalLong}.
  *
- * Extracts the value contained by the {@link OptionalLong} for validation, or produces {@code null}.
+ * <p>Extracts the value contained by the {@link OptionalLong} for validation, or produces {@code
+ * null}.
  */
 public class OptionalLongValidatedValueUnwrapper extends ValidatedValueUnwrapper<OptionalLong> {
-    @Override
-    @Nullable
-    public Object handleValidatedValue(final OptionalLong optional) {
-        return optional.isPresent() ? optional.getAsLong() : null;
-    }
+  @Override
+  @Nullable
+  public Object handleValidatedValue(final OptionalLong optional) {
+    return optional.isPresent() ? optional.getAsLong() : null;
+  }
 
-    @Override
-    public Type getValidatedValueType(final Type type) {
-        return Long.class;
-    }
+  @Override
+  public Type getValidatedValueType(final Type type) {
+    return Long.class;
+  }
 }

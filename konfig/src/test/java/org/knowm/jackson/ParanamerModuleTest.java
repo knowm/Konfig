@@ -32,8 +32,6 @@ public class ParanamerModuleTest {
   public void serializePersonWithoutAnnotations() throws IOException {
     final ObjectWriter reader = mapper.writerFor(Person.class);
     final String person = reader.writeValueAsString(new Person("Foo", "Bar"));
-    assertThat(person)
-        .contains("\"name\":\"Foo\"")
-        .contains("\"surname\":\"Bar\"");
+    assertThat(person).contains("\"name\":\"Foo\"").contains("\"surname\":\"Bar\"");
   }
 }

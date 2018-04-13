@@ -8,9 +8,9 @@ import com.fasterxml.jackson.databind.introspect.AnnotatedParameter;
 
 /**
  * A {@link PropertyNamingStrategy} implementation which, if the declaring class of a property is
- * annotated with {@link JsonSnakeCase}, uses a
- * {@link com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy}, and uses
- * the default {@link PropertyNamingStrategy} otherwise.
+ * annotated with {@link JsonSnakeCase}, uses a {@link
+ * com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy}, and uses the default
+ * {@link PropertyNamingStrategy} otherwise.
  */
 public class AnnotationSensitivePropertyNamingStrategy extends PropertyNamingStrategy {
 
@@ -22,9 +22,8 @@ public class AnnotationSensitivePropertyNamingStrategy extends PropertyNamingStr
   }
 
   @Override
-  public String nameForConstructorParameter(MapperConfig<?> config,
-      AnnotatedParameter ctorParam,
-      String defaultName) {
+  public String nameForConstructorParameter(
+      MapperConfig<?> config, AnnotatedParameter ctorParam, String defaultName) {
     if (ctorParam.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
       return snakeCase.nameForConstructorParameter(config, ctorParam, defaultName);
     }
@@ -32,9 +31,7 @@ public class AnnotationSensitivePropertyNamingStrategy extends PropertyNamingStr
   }
 
   @Override
-  public String nameForField(MapperConfig<?> config,
-      AnnotatedField field,
-      String defaultName) {
+  public String nameForField(MapperConfig<?> config, AnnotatedField field, String defaultName) {
     if (field.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
       return snakeCase.nameForField(config, field, defaultName);
     }
@@ -43,9 +40,8 @@ public class AnnotationSensitivePropertyNamingStrategy extends PropertyNamingStr
   }
 
   @Override
-  public String nameForGetterMethod(MapperConfig<?> config,
-      AnnotatedMethod method,
-      String defaultName) {
+  public String nameForGetterMethod(
+      MapperConfig<?> config, AnnotatedMethod method, String defaultName) {
     if (method.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
       return snakeCase.nameForGetterMethod(config, method, defaultName);
     }
@@ -53,9 +49,8 @@ public class AnnotationSensitivePropertyNamingStrategy extends PropertyNamingStr
   }
 
   @Override
-  public String nameForSetterMethod(MapperConfig<?> config,
-      AnnotatedMethod method,
-      String defaultName) {
+  public String nameForSetterMethod(
+      MapperConfig<?> config, AnnotatedMethod method, String defaultName) {
     if (method.getDeclaringClass().isAnnotationPresent(JsonSnakeCase.class)) {
       return snakeCase.nameForSetterMethod(config, method, defaultName);
     }

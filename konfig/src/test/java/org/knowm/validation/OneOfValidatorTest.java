@@ -21,22 +21,26 @@ public class OneOfValidatorTest {
     @OneOf({"one", "two", "three"})
     private String basic = "one";
 
-    @OneOf(value = {"one", "two", "three"}, ignoreCase = true)
+    @OneOf(
+      value = {"one", "two", "three"},
+      ignoreCase = true
+    )
     private String caseInsensitive = "one";
 
-    @OneOf(value = {"one", "two", "three"}, ignoreWhitespace = true)
+    @OneOf(
+      value = {"one", "two", "three"},
+      ignoreWhitespace = true
+    )
     private String whitespaceInsensitive = "one";
 
-    @Valid
-    private List<@OneOf({"one", "two", "three"}) String> basicList = Arrays.asList("one");
+    @Valid private List<@OneOf({"one", "two", "three"}) String> basicList = Arrays.asList("one");
   }
 
   private final Validator validator = BaseValidator.newValidator();
 
   @Test
   public void allowsExactElements() throws Exception {
-    assertThat(format(validator.validate(new Example())))
-        .isEmpty();
+    assertThat(format(validator.validate(new Example()))).isEmpty();
   }
 
   @Test
@@ -64,8 +68,7 @@ public class OneOfValidatorTest {
     final Example example = new Example();
     example.caseInsensitive = "ONE";
 
-    assertThat(format(validator.validate(example)))
-        .isEmpty();
+    assertThat(format(validator.validate(example))).isEmpty();
   }
 
   @Test
@@ -73,7 +76,6 @@ public class OneOfValidatorTest {
     final Example example = new Example();
     example.whitespaceInsensitive = "   one  ";
 
-    assertThat(format(validator.validate(example)))
-        .isEmpty();
+    assertThat(format(validator.validate(example))).isEmpty();
   }
 }

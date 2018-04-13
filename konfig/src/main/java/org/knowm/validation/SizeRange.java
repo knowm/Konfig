@@ -20,8 +20,8 @@ import javax.validation.ReportAsSingleViolation;
 import org.knowm.util.SizeUnit;
 
 /**
- * The annotated element has to be in the appropriate range. Apply on
- * {@link org.knowm.util.Size} instances.
+ * The annotated element has to be in the appropriate range. Apply on {@link org.knowm.util.Size}
+ * instances.
  */
 @Documented
 @Constraint(validatedBy = {})
@@ -38,20 +38,19 @@ public @interface SizeRange {
   long max() default Long.MAX_VALUE;
 
   @OverridesAttribute.List({
-                               @OverridesAttribute(constraint = MinSize.class, name = "unit"),
-                               @OverridesAttribute(constraint = MaxSize.class, name = "unit")
-                           })
+    @OverridesAttribute(constraint = MinSize.class, name = "unit"),
+    @OverridesAttribute(constraint = MaxSize.class, name = "unit")
+  })
   SizeUnit unit() default SizeUnit.BYTES;
 
   String message() default "must be between {min} {unit} and {max} {unit}";
 
   Class<?>[] groups() default {};
 
-  @SuppressWarnings("UnusedDeclaration") Class<? extends Payload>[] payload() default {};
+  @SuppressWarnings("UnusedDeclaration")
+  Class<? extends Payload>[] payload() default {};
 
-  /**
-   * Defines several {@code @SizeRange} annotations on the same element.
-   */
+  /** Defines several {@code @SizeRange} annotations on the same element. */
   @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
   @Retention(RUNTIME)
   @Documented

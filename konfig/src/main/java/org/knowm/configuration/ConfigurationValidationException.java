@@ -6,9 +6,7 @@ import javax.validation.ConstraintViolation;
 
 import org.knowm.validation.ConstraintViolations;
 
-/**
- * An exception thrown where there is an error validating a configuration object.
- */
+/** An exception thrown where there is an error validating a configuration object. */
 public class ConfigurationValidationException extends ConfigurationException {
 
   private final Set<ConstraintViolation<?>> constraintViolations;

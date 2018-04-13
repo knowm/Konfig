@@ -21,14 +21,12 @@ import org.knowm.validation.PortRange;
 public class PortRangeValidatorTest {
   @SuppressWarnings("PublicField")
   public static class Example {
-    @PortRange
-    public int port = 8080;
+    @PortRange public int port = 8080;
 
     @PortRange(min = 10000, max = 15000)
     public int otherPort = 10001;
 
-    @Valid
-    List<@PortRange Integer> ports = new ArrayList<>();
+    @Valid List<@PortRange Integer> ports = new ArrayList<>();
   }
 
   private final Validator validator = BaseValidator.newValidator();
@@ -43,16 +41,14 @@ public class PortRangeValidatorTest {
   public void acceptsNonPrivilegedPorts() throws Exception {
     example.port = 2048;
 
-    assertThat(validator.validate(example))
-        .isEmpty();
+    assertThat(validator.validate(example)).isEmpty();
   }
 
   @Test
   public void acceptsDynamicPorts() throws Exception {
     example.port = 0;
 
-    assertThat(validator.validate(example))
-        .isEmpty();
+    assertThat(validator.validate(example)).isEmpty();
   }
 
   @Test
