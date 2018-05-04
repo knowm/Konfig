@@ -1,10 +1,11 @@
 package org.knowm.valuehandling;
 
-import org.hibernate.validator.spi.valuehandling.ValidatedValueUnwrapper;
-
-import javax.annotation.Nullable;
 import java.lang.reflect.Type;
 import java.util.OptionalLong;
+
+import javax.annotation.Nullable;
+
+import org.hibernate.validator.spi.valuehandling.ValidatedValueUnwrapper;
 
 /**
  * A {@link ValidatedValueUnwrapper} for {@link OptionalLong}.

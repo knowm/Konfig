@@ -149,9 +149,4 @@ Konfig is built with Maven, which also handles dependency management.
     mvn clean package
     mvn javadoc:aggregate
 
-### maven-license-plugin
-
-    mvn license:check
-    mvn license:format
-    mvn license:remove
 
