@@ -28,6 +28,7 @@ public class YamlConfigurationFactoryTest extends BaseConfigurationFactoryTest {
 
   @Override
   public void printsDetailedInformationOnMalformedContent() throws Exception {
+
     assertThatThrownBy(super::printsDetailedInformationOnMalformedContent)
         .hasMessageContaining(
             String.format(
@@ -36,10 +37,9 @@ public class YamlConfigurationFactoryTest extends BaseConfigurationFactoryTest {
                     + " in 'reader', line 2, column 7:\n"
                     + "    type: [ coder,wizard\n"
                     + "          ^\n"
-                    + "expected ',' or ']', but got StreamEnd\n"
+                    + "expected ',' or ']', but got <stream end>\n"
                     + " in 'reader', line 2, column 21:\n"
-                    + "    wizard\n"
-                    + "          ^",
+                    + "    type: [ coder,wizard\n",
                 malformedAdvancedFile.getName()));
   }
 }
