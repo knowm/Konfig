@@ -282,7 +282,7 @@
 		<freemarker.version>2.3.28</freemarker.version>
 		<maven-plugin-api.version>3.6.0</maven-plugin-api.version>
 		<maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
-		<qdox.version>2.0-M9</qdox.version>
+		<qdox.version>2.0-M10</qdox.version>
 	</properties>
 
 </project>
