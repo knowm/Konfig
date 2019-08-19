@@ -279,7 +279,7 @@
 		<findbugs.version>3.0.2</findbugs.version>
 		<assertj.version>3.13.2</assertj.version>
 		<lang3.version>3.9</lang3.version>
-		<freemarker.version>2.3.28</freemarker.version>
+		<freemarker.version>2.3.29</freemarker.version>
 		<maven-plugin-api.version>3.6.1</maven-plugin-api.version>
 		<maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
 		<qdox.version>2.0-M10</qdox.version>
