@@ -273,7 +273,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<jackson.version>2.10.0.pr1</jackson.version>
+		<jackson.version>2.10.0.pr2</jackson.version>
 		<hibernate.version>6.0.17.Final</hibernate.version>
 		<glassfish.version>3.0.1-b11</glassfish.version>
 		<findbugs.version>3.0.2</findbugs.version>
