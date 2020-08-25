@@ -277,7 +277,7 @@
 		<hibernate.version>6.1.5.Final</hibernate.version>
 		<glassfish.version>3.0.1-b11</glassfish.version>
 		<findbugs.version>3.0.2</findbugs.version>
-		<assertj.version>3.16.0</assertj.version>
+		<assertj.version>3.17.0</assertj.version>
 		<lang3.version>3.11</lang3.version>
 		<freemarker.version>2.3.30</freemarker.version>
 		<maven-plugin-api.version>3.6.3</maven-plugin-api.version>
